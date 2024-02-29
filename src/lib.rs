@@ -1,6 +1,7 @@
 use std::collections::HashMap;
-#[derive(Debug, Clone, Copy, Default)]
-struct KvStore {
+use std::process::exit;
+#[derive(Debug, Clone, Default)]
+pub struct KvStore {
     map: HashMap<String, String>,
 }
 
@@ -11,14 +12,14 @@ impl KvStore {
         }
     }
     pub fn set(&mut self, key: String, value: String) {
-        Self.map.insert(key, value);
+        self.map.insert(key, value);
     }
 
-    pub fn get(&self, key:String) -> Option<&String> {
-        Self.map.get(&key)
+    pub fn get(&self, key: String) -> Option<String> {
+        self.map.get(&key).cloned()
     }
 
-    pub fn remove(&mut self, key:String) {
+    pub fn remove(&mut self, key: String) {
         self.map.remove(&key);
     }
 }
